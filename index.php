@@ -73,6 +73,38 @@
       </div>
     </section><!-- End caraousel Section -->
 
+    <!-- ======= Info Section ======= -->
+    <section id="info" class="info">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-4 d-flex flex-column align-items-stretch">
+            <div class="content">
+              <h3>LEARN ABOUT DONATION </h3>
+            </div>
+          </div>
+          <div class="col-lg-8 d-flex align-items-stretch">
+            <div class="icon-boxes d-flex flex-column justify-content-center">
+              <div class="row">
+                <div class="col-xl-6 d-flex align-items-stretch">
+                <div class="icon-box mt-4 mt-xl-0">
+                <img src="assets/images/learn-about-1.jpg" class="img-fluid" alt="">
+                <p>After donating blood, the body works to replenish the blood loss. This stimulates the production of new blood cells and in turn, helps in maintaining good health.</p>  
+                </div>
+              </div>
+                <div class="col-xl-6 d-flex align-items-stretch">
+                  <div class="icon-box mt-4 mt-xl-0">
+                    <img src="assets/images/learn-about-2.png" class="img-fluid" alt="">
+                  </div>
+                </div>
+              </div>
+            </div><!-- End .content-->
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Info Section -->
+
     
 
   <div id="preloader"></div>
