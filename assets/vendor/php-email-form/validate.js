@@ -1,8 +1,4 @@
-/**
-* PHP Email Form Validation - v2.3
-* URL: https://bootstrapmade.com/php-email-form/
-* Author: BootstrapMade.com
-*/
+
 !(function($) {
   "use strict";
 
@@ -109,16 +105,7 @@
     this_form.find('.error-message').slideUp();
     this_form.find('.loading').slideDown();
 
-    if ( $(this).data('recaptcha-site-key') ) {
-      var recaptcha_site_key = $(this).data('recaptcha-site-key');
-      grecaptcha.ready(function() {
-        grecaptcha.execute(recaptcha_site_key, {action: 'php_email_form_submit'}).then(function(token) {
-          php_email_form_submit(this_form,action,this_form.serialize() + '&recaptcha-response=' + token);
-        });
-      });
-    } else {
-      php_email_form_submit(this_form,action,this_form.serialize());
-    }
+    php_email_form_submit(this_form,action,this_form.serialize());
     
     return true;
   });
