@@ -22,7 +22,7 @@
           <?php } ?>
           <li><a href="#faqs">FAQs</a></li>
           <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contacts">Contact</a></li>
 
         </ul>
       </nav><!-- .nav-menu -->
@@ -285,13 +285,13 @@
               <select name="blood_group" id="blood_group" class="form-control">
                 <option value="">Select Blood Group</option>
                 <option value="A+">A+</option>
-                <option value="A+">A-</option>
-                <option value="A+">B+</option>
-                <option value="A+">B-</option>
-                <option value="A+">AB+</option>
-                <option value="A+">AB-</option>
-                <option value="A+">O+</option>
-                <option value="A+">O-</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
               </select>
               <div class="validate"></div>
             </div>
@@ -587,7 +587,7 @@
     </section><!-- End Gallery Section -->
 
     <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
+    <section id="contacts" class="contact">
       <div class="container">
 
         <div class="section-title">
