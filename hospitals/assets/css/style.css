@@ -1,0 +1,18 @@
+div#DataTables_Table_0_paginate a {
+    margin-right: 5px;
+    color: rgb(44, 58, 182);
+    cursor: pointer;
+}
+
+div#DataTables_Table_0_info {
+    float: right;
+    color: rgb(44, 58, 182);
+}
+
+div#DataTables_Table_0_filter > label {
+    float: right;
+    color: rgb(44, 58, 182);
+}
+div#DataTables_Table_0_length > label{
+    color: rgb(44, 58, 182);
+}
