@@ -1,4 +1,6 @@
 <?php include("includes/header.php") ?>
+<?php include("database/connection.php") ?>
+<?php include("database/getAlldata.php") ?>
 
 
 <body>
@@ -15,15 +17,22 @@
           <li class="active"><a href="#hero">Home</a></li>
           <li><a href="#info">Info</a></li>
           <li><a href="#availability">Availability</a></li>
+          <?php if(!(isset($_SESSION['receiver'])) && !(isset($_SESSION['hospital']))){ ?>
           <li><a href="#registration">Register to receive</a></li>
+          <?php } ?>
           <li><a href="#faqs">FAQs</a></li>
           <li><a href="#gallery">Gallery</a></li>
           <li><a href="#contact">Contact</a></li>
 
         </ul>
       </nav><!-- .nav-menu -->
-
-      <a href="#registration" class="registration-btn scrollto">Login</a>
+      <?php if(isset($_SESSION['receiver']) || isset($_SESSION['hospital'])){ ?>
+      <a href="<?php if(isset($_SESSION['receiver'])){ echo "receivers/index.php"; } else{ echo "hospitals/index.php"; }?>" class="registration-btn scrollto viewRequests">Dashboard</a>
+      <a href="database/logout.php" class="registration-btn scrollto">Logout</a>
+      <?php }
+      else{ ?>
+      <a href="login.html" class="registration-btn scrollto">Login</a>
+      <?php } ?>
 
     </div>
   </header><!-- End Header -->
@@ -31,7 +40,9 @@
   <section id="hero" class="d-flex align-items-center">
     <div class="container">
       <h1>Welcome to the blood bank</h1>
+      <?php if(!(isset($_SESSION['receiver'])) && !(isset($_SESSION['hospital']))){ ?>
       <a href="#registration" class="btn-get-started scrollto">Register</a>
+      <?php } ?>
     </div>
   </section><!-- End Hero -->
 
@@ -157,129 +168,81 @@
           <p>List of all the hospitals with available blood groups.</p>
         </div>
 
-        <div class="row">
-          <table id="blood-data-table" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <div class="row" style="width: 100% ;">
+          
+          <table id="blood-data-table" class="table table-striped table-bordered table-hover table-sm" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th class="th-sm">Name
               </th>
-              <th class="th-sm">Position
+              <th class="th-sm">Address
               </th>
-              <th class="th-sm">Office
+              <th class="th-sm">Email
               </th>
-              <th class="th-sm">Age
+              <th class="th-sm">Contact
               </th>
-              <th class="th-sm">Start date
+              <th class="th-sm">A+
               </th>
-              <th class="th-sm">Salary
+              <th class="th-sm">A-
+              </th>
+              <th class="th-sm">B+
+              </th>
+              <th class="th-sm">B-
+              </th>
+              <th class="th-sm">AB+
+              </th>
+              <th class="th-sm">AB-
+              </th>
+              <th class="th-sm">O+
+              </th>
+              <th class="th-sm">O-
+              </th>
+              <th class="th-sm">Action
               </th>
             </tr>
           </thead>
           <tbody>
+            <?php 
+            if(is_array($rows)){ ?>
+            <div id="modal">
+              <button class="closeBtn">X</button>
+              <input type="number" name="quantity" id="quantity" placeholder="Enter required quantity">
+              <button class="requestBtn">REQUEST</button>
+            </div>
+            <div id="overlay"></div>
+            <?php  foreach($rows as $row){ ?>
             <tr>
-              <td>Tiger Nixon</td>
-              <td>System Architect</td>
-              <td>Edinburgh</td>
-              <td>61</td>
-              <td>2011/04/25</td>
-              <td>$320,800</td>
-            </tr>
-            <tr>
-              <td>Garrett Winters</td>
-              <td>Accountant</td>
-              <td>Tokyo</td>
-              <td>63</td>
-              <td>2011/07/25</td>
-              <td>$170,750</td>
-            </tr>
-            <tr>
-              <td>Ashton Cox</td>
-              <td>Junior Technical Author</td>
-              <td>San Francisco</td>
-              <td>66</td>
-              <td>2009/01/12</td>
-              <td>$86,000</td>
-            </tr>
-            <tr>
-              <td>Cedric Kelly</td>
-              <td>Senior Javascript Developer</td>
-              <td>Edinburgh</td>
-              <td>22</td>
-              <td>2012/03/29</td>
-              <td>$433,060</td>
-            </tr>
-            <tr>
-              <td>Airi Satou</td>
-              <td>Accountant</td>
-              <td>Tokyo</td>
-              <td>33</td>
-              <td>2008/11/28</td>
-              <td>$162,700</td>
-            </tr>
-            <tr>
-              <td>Brielle Williamson</td>
-              <td>Integration Specialist</td>
-              <td>New York</td>
-              <td>61</td>
-              <td>2012/12/02</td>
-              <td>$372,000</td>
-            </tr>
-            <tr>
-              <td>Herrod Chandler</td>
-              <td>Sales Assistant</td>
-              <td>San Francisco</td>
-              <td>59</td>
-              <td>2012/08/06</td>
-              <td>$137,500</td>
-            </tr>
-            <tr>
-              <td>Rhona Davidson</td>
-              <td>Integration Specialist</td>
-              <td>Tokyo</td>
-              <td>55</td>
-              <td>2010/10/14</td>
-              <td>$327,900</td>
-            </tr>
-            <tr>
-              <td>Colleen Hurst</td>
-              <td>Javascript Developer</td>
-              <td>San Francisco</td>
-              <td>39</td>
-              <td>2009/09/15</td>
-              <td>$205,500</td>
-            </tr>
-            <tr>
-              <td>Sonya Frost</td>
-              <td>Software Engineer</td>
-              <td>Edinburgh</td>
-              <td>23</td>
-              <td>2008/12/13</td>
-              <td>$103,600</td>
-            </tr>
-            <tr>
-              <td>Jena Gaines</td>
-              <td>Office Manager</td>
-              <td>London</td>
-              <td>30</td>
-              <td>2008/12/19</td>
-              <td>$90,560</td>
-            </tr>
-            <tr>
-              <td>Quinn Flynn</td>
-              <td>Support Lead</td>
-              <td>Edinburgh</td>
-              <td>22</td>
-              <td>2013/03/03</td>
-              <td>$342,000</td>
-            </tr>
+              <td><?php echo $row['name'] ?></td>
+              <td><?php echo $row['address'] ?></td>
+              <td><?php echo $row['email'] ?></td>
+              <td><?php echo $row['contact'] ?></td>
+              <td><?php echo $row['A+'] ?></td>
+              <td><?php echo $row['A-'] ?></td>
+              <td><?php echo $row['B+'] ?></td>
+              <td><?php echo $row['B-'] ?></td>
+              <td><?php echo $row['AB+'] ?></td>
+              <td><?php echo $row['AB-'] ?></td>
+              <td><?php echo $row['O+'] ?></td>
+              <td><?php echo $row['O-'] ?></td>
+              <td><button class="bookBtn" data-id='<?php echo $row['id'] ?>'>BOOK</button></td>
+            <?php  
+              } 
+            }
+            ?>
+            
+            
+            
+              
             </tbody>
           </table>
         </div>
 
       </div>
+      
     </section><!-- End Availability Section -->
 
     <!-- ======= Registration Section ======= -->
+    <?php if(!(isset($_SESSION['receiver'])) && !(isset($_SESSION['hospital']))){ ?>
     <section id="registration" class="registration section-bg">
       <div class="container">
 
@@ -288,60 +251,68 @@
           <p>You can register yourself as a hospital representative or as receiver to get available blood groups.</p>
         </div>
 
-        <form action="forms/appointment.php" method="post" role="form" class="php-email-form">
+        <form id="registration" action="forms/registration.php" method="post" role="form" class="php-email-form">
           <div class="form-row">
-            <div class="col-md-4 form-group">
-              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-md-4 form-group">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
-              <div class="validate"></div>
-            </div>
-            <div class="col-md-4 form-group">
-              <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+            <div class="col-md-2 form-group">
+              <select name="acc-type" id="acc-type" class="form-control">
+                <option value="">Select Account type</option>
+                <option value="Receiver">Receiver</option>
+                <option value="Hospital">Hospital</option>
+              </select>
               <div class="validate"></div>
             </div>
           </div>
           <div class="form-row">
             <div class="col-md-4 form-group">
-              <input type="datetime" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <input type="text" name="name" class="form-control" id="name" placeholder="Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
               <div class="validate"></div>
             </div>
             <div class="col-md-4 form-group">
-              <select name="department" id="department" class="form-control">
-                <option value="">Select Department</option>
-                <option value="Department 1">Department 1</option>
-                <option value="Department 2">Department 2</option>
-                <option value="Department 3">Department 3</option>
-              </select>
+              <input type="email" class="form-control" name="email" id="email" placeholder="Email" data-rule="email" data-msg="Please enter a valid email">
               <div class="validate"></div>
             </div>
             <div class="col-md-4 form-group">
-              <select name="doctor" id="doctor" class="form-control">
-                <option value="">Select Doctor</option>
-                <option value="Doctor 1">Doctor 1</option>
-                <option value="Doctor 2">Doctor 2</option>
-                <option value="Doctor 3">Doctor 3</option>
+              <input type="password" class="form-control" name="password" id="password" placeholder="Password" data-rule="minlen:8" data-msg="Please enter at least 8 chars">
+              <div class="validate"></div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-4 form-group">
+              <input type="tel" class="form-control" name="contact" id="contact" placeholder="Contact" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <div class="validate"></div>
+            </div>
+            <div class="col-md-2 form-group">
+              <select name="blood_group" id="blood_group" class="form-control">
+                <option value="">Select Blood Group</option>
+                <option value="A+">A+</option>
+                <option value="A+">A-</option>
+                <option value="A+">B+</option>
+                <option value="A+">B-</option>
+                <option value="A+">AB+</option>
+                <option value="A+">AB-</option>
+                <option value="A+">O+</option>
+                <option value="A+">O-</option>
               </select>
               <div class="validate"></div>
             </div>
           </div>
 
           <div class="form-group">
-            <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
+            <textarea class="form-control" name="address" rows="5" placeholder="Enter address"></textarea>
             <div class="validate"></div>
           </div>
           <div class="mb-3">
             <div class="loading">Loading</div>
             <div class="error-message"></div>
-            <div class="sent-message">Your registration request has been sent successfully.</div>
+            <div class="sent-message">Successfully registered. Thank you!</div>
           </div>
           <div class="text-center"><button type="submit">Submit</button></div>
         </form>
 
       </div>
-    </section><!-- End Registration Section -->
+    </section>
+    <?php } ?>
+    <!-- End Registration Section -->
 
     <!-- ======= FAQ Section ======= -->
     <section id="faqs" class="faqs">

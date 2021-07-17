@@ -174,4 +174,72 @@
     });
   });
 
+  $(function(){
+    $(document).on('click', '.closeBtn', function(e){
+      e.preventDefault();
+      document.getElementById('modal').style.display = "none";
+      document.getElementById('overlay').style.display = "none";
+    });
+  
+  });
+
+  $(function(){
+    $(document).on('click', '.bookBtn', function(e){
+      e.preventDefault();
+      var id = $(this).data('id');
+      var reqBtn = document.querySelector('.requestBtn');
+      reqBtn.setAttribute('data-id',id);
+      document.getElementById('modal').style.display = "flex";
+      document.getElementById('overlay').style.display = "block";
+    });
+  
+  });
+
+  $(function(){
+    $(document).on('change', '#acc-type', function(e){
+      e.preventDefault();
+      var type = document.getElementById('acc-type').value;
+      console.log(type);
+      if(type == "Receiver"){
+        document.getElementById('blood_group').style.display = "block";
+      }
+      else{
+        document.getElementById('blood_group').style.display = "none";
+      }
+    });
+  
+  });
+
+  $(function(){
+    $(document).on('click', '.requestBtn', function(e){
+      e.preventDefault();
+      var id = $(this).data('id');
+      var quantity = document.getElementById('quantity').value;
+      $.ajax({
+        type: 'POST',
+        url: 'database/request.php',
+        data: {
+          id:id,
+          quantity:quantity
+        },
+        dataType: 'text',
+        success: function(response){
+          if(response == "login required"){
+            window.location.href = "login.html";
+          }  
+          else{
+            alert(response);
+            document.getElementById('modal').style.display = "none";
+            document.getElementById('overlay').style.display = "none";
+          }  
+        }
+      });
+    });
+
+    
+
+
+  
+  });
+
 })(jQuery);
