@@ -707,6 +707,7 @@ section {
 --------------------------------------------------------------*/
 #blood-data-table_wrapper{
   width: 100%;
+  overflow-x: auto;
 }
 #requests-data-table_wrapper{
   width: 100%;
