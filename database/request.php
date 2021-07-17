@@ -6,8 +6,8 @@
         if(isset($_POST['id']) || isset($_GET['id'])){
 
             $receiverID = $_SESSION['receiver'];
-            $hospitalID = isset($_POST['id']) ? $_POST['id'] : $_GET['id'];
-            $quantity = isset($_POST['quantity']) ? $_POST['quantity'] : $_GET['quantity'];
+            $hospitalID = $_POST['id'];
+            $quantity = $_POST['quantity'];
 
 
             $res = checkQuantity($receiverID,$hospitalID,$quantity);

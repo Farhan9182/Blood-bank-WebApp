@@ -231,6 +231,7 @@
             alert(response);
             document.getElementById('modal').style.display = "none";
             document.getElementById('overlay').style.display = "none";
+            window.location.reload();
           }  
         }
       });
